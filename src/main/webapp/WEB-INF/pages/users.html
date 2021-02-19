@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<h2>Users List</h2>
+<br>
+
+
+<table border="1">
+    <tr>
+
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>AGE</th>
+        <th>EMAIL</th>
+        <th>CITY</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+
+    </tr>
+    <tr th:each="user: ${allUsers}">
+
+
+        <td th:text="${user.getId()}">model</td>
+        <td th:text="${user.getName()}">model</td>
+        <td th:text="${user.getSurname()}">model</td>
+        <td th:text="${user.getAge()}">model</td>
+        <td th:text="${user.getEmail()}">model</td>
+        <td th:text="${user.getCity()}">model</td>
+        <td>
+            <a th:href="@{/users/{id}/edit(id=${user.getId()})}">UPDATE</a>
+
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/users/{id}/delete(id=${user.getId()})}">
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
+
+    </tr>
+</table>
+<br>
+<button type="button" th:onclick="|window.location.href='/users/addNewUser'|">Add</button>
+</body>
+</html>
